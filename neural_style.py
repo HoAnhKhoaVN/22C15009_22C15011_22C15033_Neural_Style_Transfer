@@ -4,6 +4,9 @@ from keras.preprocessing.image import img_to_array
 from keras import backend as K
 from scipy.optimize import fmin_l_bfgs_b # Limited-memory Broyden-Fletcher-Goldfarb-Shanno
 from typing import Dict, Text, List, Any
+import numpy as np
+import cv2
+import os
 
 
 class NeuralStyle:
@@ -42,6 +45,20 @@ class NeuralStyle:
             tensors= [self.content, self.style, self.output],
             axis = 0
         )
+
+        # Tải trọng số tiền huấn luyện.
+        print("[INFO] loading network...")
+        self.model = self.S["net"](
+            weights="imagenet",
+            include_top = False,
+            input_tensor = self.input
+        )
+
+        # Xây dựng từ điển ánh xạ tên của mỗi lớp với trọng số bên trong. Để mình sẽ gom nhóm
+        # Hay bỏ các lớp theo mong muốn.
+        layer_map = {l.name: l.output for l in self.model.layers}
+
+
 
 
 
