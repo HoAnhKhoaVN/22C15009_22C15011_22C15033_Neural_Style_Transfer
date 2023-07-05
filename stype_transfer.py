@@ -1,5 +1,5 @@
 # from pyimagesearch.nn.conv import NeuralStyle
-from keras.applications import VGG19
+from keras.applications.vgg16 import VGG16
 
 
 
@@ -7,12 +7,12 @@ from keras.applications import VGG19
 SETTINGS = {
 # initialize the path to the input (i.e., content) image,
 # style image, and path to the output directory
-"input_path": "inputs/jp.jpg",
-"style_path": "inputs/starry_night.jpg",
+"input_path": "content_image.jpg",
+"style_path": "style_image.jpg",
 "output_path": "output",
 # define the CNN to be used for style transfer, along with
 # the set of content layer and style layers, respectively
-"net": VGG19,
+"net": VGG16,
 "content_layer": "block4_conv2",
 "style_layers": ["block1_conv1", "block2_conv1", "block3_conv1", "block4_conv1", "block5_conv1"],
 # store the content, style, and total variation weights,

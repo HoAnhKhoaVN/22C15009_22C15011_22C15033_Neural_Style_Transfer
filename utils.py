@@ -40,6 +40,7 @@ def load_img(
 
 def show_img(
     image : tf.Tensor,
+    save_file: Text = None,
     title: Text = None
 )-> None:
     """_summary_
@@ -58,11 +59,16 @@ def show_img(
     if title:
         plt.title(label= title)
 
+    if save_file:
+        plt.savefig(save_file)
+
+
 
 if __name__ == "__main__":
     IMG_PATH = "content_image.jpg"
     content_image = load_img(path_to_img= IMG_PATH)
     show_img(
         image= content_image,
-        title= "Content Image"
+        title= "Content Image",
+        save_file="demo.jpg"
     )
